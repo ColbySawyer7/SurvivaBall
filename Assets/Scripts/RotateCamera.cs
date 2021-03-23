@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
 {
-    public float rotationSpeed = 50;
+    public Transform cam;
+    public Transform player;
+    public Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
@@ -13,14 +15,8 @@ public class RotateCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
+        cam.position = player.position + offset;
     }
 }
