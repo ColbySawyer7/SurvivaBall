@@ -42,15 +42,15 @@ public class PlayerController : MonoBehaviour
             jumping = true;
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
-        else if (transform.position.y < -10 && !gameOver)
+        else if (transform.position.y < -10)
         {
             Destroy(gameObject);
         }
-        else if (transform.position.y < -9 && !gameOver)
+        else if (transform.position.y < -9)
         {
             gameOver = true;
             playerAudio.PlayOneShot(fallOffStage, 1.0f);
-
+            Islands.GetComponent<AudioSource>().Stop();
         }
     }
 
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && !gameOver)
+        if (collision.gameObject.CompareTag("Enemy"))
         { 
             playerAudio.PlayOneShot(popSound, 1.0f);
             Islands.GetComponent<AudioSource>().Stop();
@@ -97,19 +97,11 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(finishSound, 1.0f);
             gameOver = true; 
         }
-        else if (collision.gameObject.CompareTag("Enemy") && !hasPowerup && !gameOver)
+        else if (collision.gameObject.CompareTag("Enemy") && !hasPowerup)
         {
             gameOver = true;
             playerAudio.PlayOneShot(popSound, 1.0f);
             Islands.GetComponent<AudioSource>().Stop();
-        }
-        else if (collision.gameObject.CompareTag("Islands"))
-        {
-            jumping = false;
-        }
-        else if (collision.gameObject.CompareTag("Finish"))
-        {
-            playerAudio.PlayOneShot(finishSound, 1.0f);
         }
     }
 
