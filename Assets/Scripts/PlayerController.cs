@@ -96,6 +96,20 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(finishSound, 1.0f);
             gameOver = true; 
         }
+        else if (collision.gameObject.CompareTag("Enemy") && !hasPowerup && !gameOver)
+        {
+            gameOver = true;
+            playerAudio.PlayOneShot(popSound, 1.0f);
+            Islands.GetComponent<AudioSource>().Stop();
+        }
+        else if (collision.gameObject.CompareTag("Islands"))
+        {
+            jumping = false;
+        }
+        else if (collision.gameObject.CompareTag("Finish"))
+        {
+            playerAudio.PlayOneShot(finishSound, 1.0f);
+        }
     }
 
     /*IEnumerator PowerupCountdownRoutine()
