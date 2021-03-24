@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
-    public float speed = 5;
+    public float speed;
+    public float jump;
     private GameObject focalPoint;
-    bool hasPowerup = false;
+    /*bool hasPowerup = false;
     private float powerUpStrength = 15;
-    private float powerUpTime = 5;
+    private float powerUpTime = 5;*/
     public GameObject powerupIndicator;
     private Vector3 powerupOffset;
     private AudioSource playerAudio;
@@ -39,8 +40,6 @@ public class PlayerController : MonoBehaviour
         {
             jumping = true;
             playerAudio.PlayOneShot(jumpSound, 1.0f);
-            // Whoever is adding the jumping needs to edit the line below to the actual jump mechanism
-            playerRb.AddForce(Vector3.up, ForceMode.Impulse);
         }
         else if (transform.position.y < -10 && !gameOver)
         {
@@ -50,13 +49,20 @@ public class PlayerController : MonoBehaviour
         {
             gameOver = true;
             playerAudio.PlayOneShot(fallOffStage, 1.0f);
+
         }
     }
 
     private void FixedUpdate()
     {
         float forwardInput = Input.GetAxis("Vertical");
+        float sideInput = Input.GetAxis("Horizontal");
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
+        playerRb.AddForce(focalPoint.transform.right * sideInput * speed);
+        if (Input.GetKeyDown(KeyCode.Space) && !jumping)
+        {
+            playerRb.AddForce(Vector3.up * jump, ForceMode.Impulse);
+        }
         powerupIndicator.transform.position = transform.position + powerupOffset;
     }
 
@@ -66,19 +72,29 @@ public class PlayerController : MonoBehaviour
         {
             playerAudio.PlayOneShot(powerupSound, 1.0f);
             Destroy(other.gameObject);
-            hasPowerup = true;
-            StartCoroutine(PowerupCountdownRoutine());
+            //hasPowerup = true;
+            //StartCoroutine(PowerupCountdownRoutine());
             powerupIndicator.gameObject.SetActive(true);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        if (collision.gameObject.CompareTag("Enemy") && !gameOver)
+        { 
+            playerAudio.PlayOneShot(popSound, 1.0f);
+            Islands.GetComponent<AudioSource>().Stop();
+            Destroy(gameObject);
+            gameOver = true;
+        }
+        else if (collision.gameObject.CompareTag("Islands"))
         {
-            Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
-            enemyRb.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
+            jumping = false;
+        }
+        else if (collision.gameObject.CompareTag("Finish"))
+        {
+            playerAudio.PlayOneShot(finishSound, 1.0f);
+            gameOver = true; 
         }
         else if (collision.gameObject.CompareTag("Enemy") && !hasPowerup && !gameOver)
         {
@@ -96,10 +112,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator PowerupCountdownRoutine()
+    /*IEnumerator PowerupCountdownRoutine()
     {
         yield return new WaitForSeconds(powerUpTime);
         hasPowerup = false;
         powerupIndicator.gameObject.SetActive(false);
-    }
+    }*/
 }

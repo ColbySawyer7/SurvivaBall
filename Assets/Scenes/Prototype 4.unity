@@ -292,7 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73388b24c363e47d1bb31617ec65d358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 50
+  cam: {fileID: 697381438}
+  player: {fileID: 858838820}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!4 &697381438
 Transform:
   m_ObjectHideFlags: 0
@@ -433,6 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jump: 6
   powerupIndicator: {fileID: 1434738582}
   popSound: {fileID: 8300000, guid: ac10377fbd3496e42bcfd3c141a708a7, type: 3}
   powerupSound: {fileID: 8300000, guid: 83d60f364947de149b716b65556a6fd2, type: 3}
