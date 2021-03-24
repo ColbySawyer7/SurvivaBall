@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 858838822}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -951,6 +951,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3349492196915402408, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3350492023472694930, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
         type: 3}
       propertyPath: m_Name
@@ -1168,6 +1173,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3349492196915402408, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3350492023472694930, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
         type: 3}
       propertyPath: m_Name
@@ -1235,6 +1245,11 @@ PrefabInstance:
     - target: {fileID: 3344949842355049690, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349492196915402408, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3350492023472694930, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
@@ -1306,6 +1321,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3349492196915402408, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3350492023472694930, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
         type: 3}
       propertyPath: m_Name
@@ -1373,6 +1393,11 @@ PrefabInstance:
     - target: {fileID: 3344949842355049690, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349492196915402408, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3350492023472694930, guid: 5b46bc1c1d3364fbf887f748b1cfa70c,
@@ -1448,6 +1473,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195768158913101221, guid: 1c286211859124eea85f40140f6d08f0,
+        type: 3}
+      propertyPath: gameOver
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c286211859124eea85f40140f6d08f0, type: 3}

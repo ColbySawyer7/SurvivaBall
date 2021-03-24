@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public GameObject finish;
     private bool jumping = false;
     private bool gameOver = false;
+    private bool hasPowerup = false;
 
     // Start is called before the first frame update
     void Start()
