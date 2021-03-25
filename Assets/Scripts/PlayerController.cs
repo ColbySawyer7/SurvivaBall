@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     public GameObject finish;
     private bool jumping = false;
     private bool gameOver = false;
+<<<<<<< Updated upstream
+=======
+    private bool hasPowerup = false;
+>>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,7 @@ public class PlayerController : MonoBehaviour
         {
             jumping = true;
             playerAudio.PlayOneShot(jumpSound, 1.0f);
+<<<<<<< Updated upstream
         }
         else if (transform.position.y < -10 && !gameOver)
         {
@@ -50,6 +55,19 @@ public class PlayerController : MonoBehaviour
             gameOver = true;
             playerAudio.PlayOneShot(fallOffStage, 1.0f);
 
+=======
+            playerRb.AddForce(Vector3.up * jump, ForceMode.Impulse);
+        }
+        else if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
+        else if (transform.position.y < -9)
+        {
+            gameOver = true;
+            playerAudio.PlayOneShot(fallOffStage, 1.0f);
+            Islands.GetComponent<AudioSource>().Stop();
+>>>>>>> Stashed changes
         }
     }
 
@@ -59,10 +77,13 @@ public class PlayerController : MonoBehaviour
         float sideInput = Input.GetAxis("Horizontal");
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         playerRb.AddForce(focalPoint.transform.right * sideInput * speed);
+<<<<<<< Updated upstream
         if (Input.GetKeyDown(KeyCode.Space) && !jumping)
         {
             playerRb.AddForce(Vector3.up * jump, ForceMode.Impulse);
         }
+=======
+>>>>>>> Stashed changes
         powerupIndicator.transform.position = transform.position + powerupOffset;
     }
 
@@ -80,7 +101,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+<<<<<<< Updated upstream
         if (collision.gameObject.CompareTag("Enemy") && !gameOver)
+=======
+        if (collision.gameObject.CompareTag("Enemy"))
+>>>>>>> Stashed changes
         { 
             playerAudio.PlayOneShot(popSound, 1.0f);
             Islands.GetComponent<AudioSource>().Stop();
@@ -96,11 +121,16 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(finishSound, 1.0f);
             gameOver = true; 
         }
+<<<<<<< Updated upstream
         else if (collision.gameObject.CompareTag("Enemy") && !hasPowerup && !gameOver)
+=======
+        else if (collision.gameObject.CompareTag("Enemy") && !hasPowerup)
+>>>>>>> Stashed changes
         {
             gameOver = true;
             playerAudio.PlayOneShot(popSound, 1.0f);
             Islands.GetComponent<AudioSource>().Stop();
+<<<<<<< Updated upstream
         }
         else if (collision.gameObject.CompareTag("Islands"))
         {
@@ -109,6 +139,8 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Finish"))
         {
             playerAudio.PlayOneShot(finishSound, 1.0f);
+=======
+>>>>>>> Stashed changes
         }
     }
 
