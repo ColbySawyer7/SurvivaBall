@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             jumping = true;
             playerAudio.PlayOneShot(jumpSound, 1.0f);
+            playerRb.AddForce(Vector3.up * jump, ForceMode.Impulse);
         }
         else if (transform.position.y < -10)
         {
@@ -60,10 +61,6 @@ public class PlayerController : MonoBehaviour
         float sideInput = Input.GetAxis("Horizontal");
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         playerRb.AddForce(focalPoint.transform.right * sideInput * speed);
-        if (Input.GetKeyDown(KeyCode.Space) && !jumping)
-        {
-            playerRb.AddForce(Vector3.up * jump, ForceMode.Impulse);
-        }
         powerupIndicator.transform.position = transform.position + powerupOffset;
     }
 
