@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -53,6 +54,12 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(fallOffStage, 1.0f);
             Islands.GetComponent<AudioSource>().Stop();
         }
+
+        //Exits the game when the escape key is pressed.
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void FixedUpdate()
@@ -73,6 +80,7 @@ public class PlayerController : MonoBehaviour
             //hasPowerup = true;
             //StartCoroutine(PowerupCountdownRoutine());
             powerupIndicator.gameObject.SetActive(true);
+            ScoreManager.instance.AddPoints();
         }
     }
 
@@ -81,9 +89,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         { 
             playerAudio.PlayOneShot(popSound, 1.0f);
-            Islands.GetComponent<AudioSource>().Stop();
             Destroy(gameObject);
             gameOver = true;
+            SceneManager.LoadScene("Game Over");
         }
         else if (collision.gameObject.CompareTag("Islands"))
         {
@@ -92,13 +100,14 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Finish"))
         {
             playerAudio.PlayOneShot(finishSound, 1.0f);
-            gameOver = true; 
+            gameOver = true;
+            SceneManager.LoadScene("Victory");
         }
         else if (collision.gameObject.CompareTag("Enemy") && !hasPowerup)
         {
             gameOver = true;
             playerAudio.PlayOneShot(popSound, 1.0f);
-            Islands.GetComponent<AudioSource>().Stop();
+            SceneManager.LoadScene("Game Over");
         }
     }
 
