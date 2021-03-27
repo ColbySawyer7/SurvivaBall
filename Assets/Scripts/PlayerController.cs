@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneManager.LoadScene("Menu");
         playerRb = GetComponent<Rigidbody>();
         focalPoint = GameObject.Find("Focal Point");
         powerupOffset = powerupIndicator.transform.position;
