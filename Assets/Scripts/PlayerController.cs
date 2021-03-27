@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             gameOver = true;
             playerAudio.PlayOneShot(fallOffStage, 1.0f);
-            Islands.GetComponent<AudioSource>().Stop();
+            SceneManager.LoadScene("Game Over");
         }
 
         //Exits the game when the escape key is pressed.
